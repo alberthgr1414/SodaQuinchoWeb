@@ -1,0 +1,42 @@
+﻿.mantenimiento {
+    background-color: #8cdba8;
+}
+
+.tabla {
+    background-color: #c7bebe;
+}
+
+.Soda {
+    font-size: 25px;
+}
+
+input[type=text] {
+}
+
+input:invalid {
+    border: 2px solid red;
+}
+
+.tipoplato {
+    background-color: #8cdba8;
+}
+
+.factura {
+    background-color: #c7bebe;
+}
+
+.productos {
+    background-color: #c7bebe;
+    top: 0px;
+    left: 0px;
+}
+
+.auto-style1 {
+    width: 100%;
+}
+
+.auto-style2 {
+    height: 26px;
+}
+
+

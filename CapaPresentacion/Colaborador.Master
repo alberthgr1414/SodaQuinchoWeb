@@ -1,0 +1,100 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Colaborador.master.cs" Inherits="CapaPresentacion.Colaborador" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" charset="utf-8; width=device-width, initial-scale=1" name="viewport" />
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/estilo.css" rel="stylesheet" />
+    <link href="login/estilos.css" type="text/css" rel="stylesheet" />
+    <script>
+        function numbersonly(e) {
+            var unicode = e.charCode ? e.charCode : e.keyCode
+            if (unicode != 8 && unicode != 44) {
+
+                if (unicode < 48 || unicode > 57) 
+                { return false }   
+            }
+        }
+            function imagepreview(input) {
+                if (input.files && input.files[0])
+                {
+                    var fildr = new FileReader();
+                    fildr.onload = function (e) {
+                        $('#imgprw').attr('src', e.target.result);
+                    }
+                    fildr.readAsDataURL(input.files[0]);
+                }
+
+            }
+            function Cantidad(f) {
+                document.getElementById('txtEfectivo').value = f;
+            }
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header>
+            <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+                <a class="navbar-brand Soda" href="#">
+                    <asp:Image ID="Image1" runat="server" Height="41px" ImageUrl="~/imagen/SQ.PNG" Width="47px" />
+                </a>
+                <ul class="navbar-nav collapse navbar-collapse">
+                     <li class="nav-item">
+                        <a class="nav-link" href="InicioCol.aspx">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="FacturacionCol.aspx">Facturacion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="PendienteCol.aspx">Pendientes de Entrega</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="MesaCol.aspx">Control de Mesas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ExpressCol.aspx">Control de Express</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="AperturaTurnoCol.aspx">Turno</a>
+                    </li>
+                                       <li class="nav-item">
+                        <a class="nav-link" href="AyudaCol.aspx">Ayuda</a>
+                    </li>
+                    <li class="nav-item col text-right">
+                        <a class="nav-link text-success">
+                            <% 
+                                try
+                                {
+                                    Response.Write("Bienvenido " +"("+ Session["ingresar"].ToString()+")");
+                                }
+                                catch
+                                {
+                                }
+
+                            %>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right salir">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbar2" data-toggle="dropdown">Cuenta</a>
+                        <div class="dropdown-menu">
+                            <asp:LinkButton class="dropdown-item" Text="Salir" ID="linkGoSomewhere" runat="server" OnClick="linkGoSomewhere_Click" />
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </form>
+</body>
+</html>

@@ -1,0 +1,133 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Administrador.master.cs" Inherits="CapaPresentacion.Administrador" %>
+<%@ Register Assembly="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" 
+Namespace="System.Web.UI" TagPrefix="ajaxToolkit" %> 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" charset="utf-8; width=device-width, initial-scale=1" name="viewport" />
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
+    <link href="css/estilo.css" type="text/css" rel="stylesheet" />
+    <link href="login/estilos.css" type="text/css" rel="stylesheet" />
+    <script>
+        // funcion para solo numeros
+        function numbersonly(e) {
+            var unicode = e.charCode ? e.charCode : e.keyCode
+            if (unicode != 8 && unicode != 44) {
+
+                if (unicode < 48 || unicode > 57) { return false }
+            }
+        }
+        // funcion para mostrar imagen
+        function imagepreview(input) {
+            if (input.files && input.files[0]) {
+                var fildr = new FileReader();
+                fildr.onload = function (e) {
+                    $('#imgprw').attr('src', e.target.result);
+                }
+                fildr.readAsDataURL(input.files[0]);
+            }
+
+        }
+        // funcion imagen editar 
+        function imagepreviewedit(input) {
+            if (input.files && input.files[0]) {
+                var fildr = new FileReader();
+                fildr.onload = function (e) {
+                    $('#imgpreviewedit').attr('src', e.target.result);
+                }
+                fildr.readAsDataURL(input.files[0]);
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header>
+            <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+                <!-- Brand -->
+                <a class="navbar-brand Soda" href="#">
+                    <asp:Image ID="Image1" runat="server" Height="41px" ImageUrl="~/imagen/SQ.PNG" Width="47px" />
+                </a>
+                <!-- Links -->
+                <ul class="navbar-nav collapse navbar-collapse">
+                    <li class="nav-item">
+                        <a class="nav-link" href="InicioAdministrador.aspx">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="FacturacionAdmin.aspx">Facturacion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="PendienteAdmin.aspx">Pendientes de Entrega</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="MesaAdmin.aspx">Control de Mesas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ExpressAdmin.aspx">Control de Express</a>
+                    </li>
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Matenimientos</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="MantenimientoUsuario.aspx">Mantenimiento Usuarios</a>
+                            <a class="dropdown-item" href="MantenimientoProducto.aspx">Mantenimiento Productos</a>
+                            <a class="dropdown-item" href="MantenimientoTipoPlato.aspx">Mantenimiento Tipo Productos</a>
+                            <a class="dropdown-item" href="MantenimientoExpress.aspx">Mantenimiento Express</a>
+                       <%--     <a class="dropdown-item" href="MantenimientoMesa.aspx">Mantenimiento Mesa</a>--%>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbar" data-toggle="dropdown">Reportes</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="ReportFactura.aspx">Reporte Productos</a>
+                            <a class="dropdown-item" href="ReportTurno.aspx">Reporte Cierres de Caja</a>
+                            <a class="dropdown-item" href="ReporteExpress.aspx">Reporte Express</a>
+                            <a class="dropdown-item" href="ReporteFactura.aspx">Reporte Transacciones Diarias</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="AperturaTurno.aspx">Turno</a>
+                    </li>
+                   <li class="nav-item">
+                        <a class="nav-link" href="AyudaMaster.aspx">Ayuda</a>
+                    </li>
+                    <li class="nav-item col text-right">
+                        <a class="nav-link text-success">
+                            <% 
+                                try
+                                {
+                                    Response.Write("Bienvenido " + "(" + Session["ingresar"].ToString() + ")");
+                                }
+                                catch 
+                                {
+
+                                }
+
+                            %>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right salir">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbar2" data-toggle="dropdown">Cuenta</a>
+                        <div class="dropdown-menu">
+                            <asp:LinkButton class="dropdown-item" Text="Salir" ID="linkGoSomewhere" runat="server" OnClick="linkGoSomewhere_Click" />
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </form>
+</body>
+</html>
